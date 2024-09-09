@@ -118,3 +118,12 @@
   components:
   - type: Sprite
     state: pen_hop
+
+  - type: entity
+  name: ce's fountain pen
+  parent: PenEmbeddable
+  id: PenCe
+  description: A luxurious fountain pen for the ce of the station.
+  components:
+  - type: Sprite
+    state: pen_ce
