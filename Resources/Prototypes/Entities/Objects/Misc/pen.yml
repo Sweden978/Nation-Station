@@ -127,3 +127,8 @@
   components:
   - type: Sprite
     state: pen_ce
+  - type: Tool
+    qualities:
+    - Screwing
+    useSound:
+      collection: Screwdriver
