@@ -120,10 +120,26 @@
     state: pen_hop
 
 - type: entity
+  name: hos's fountain pen
+  parent: PenEmbeddable
+  id: PenHos
+  description: A luxurious fountain pen for the hos of the station. Sharpend for defense of the station.
+  components:
+  - type: Sprite
+    state: pen_hos
+  - type: MeleeWeapon
+    wideAnimationRotation: -45
+    damage:
+      types:
+        Piercing: 10
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+
+- type: entity
   name: ce's fountain pen
   parent: PenEmbeddable
   id: PenCe
-  description: A luxurious fountain pen for the ce of the station.
+  description: A luxurious fountain pen for the ce of the station. It also works as a screwdriver.
   components:
   - type: Sprite
     state: pen_ce
@@ -132,3 +148,72 @@
     - Screwing
     useSound:
       collection: Screwdriver
+
+- type: entity
+  name: cmo's fountain pen
+  parent: PenEmbeddable
+  id: PenCmo
+  description: A luxurious fountain pen for the Cmo of the station. It has a hidden autoinjector inside.
+  components:
+  - type: Sprite
+    state: pen_cmo
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 5
+  - type: RefillableSolution
+    solution: hypospray
+  - type: ExaminableSolution
+    solution: hypospray
+    heldOnly: true # Allow examination only when held in hand.
+  - type: Hypospray
+    onlyAffectsMobs: false
+  - type: UseDelay
+    delay: 0.5
+  - type: StaticPrice # A new shitcurity meta
+    price: 75
+  - type: EmitSoundOnUse
+    handle: false # don't want the sound to stop the self-inject from triggering
+
+- type: entity
+  name: qm's fountain pen
+  parent: PenEmbeddable
+  id: PenQm
+  description: A luxurious fountain pen for the qm of the station.
+  components:
+  - type: Sprite
+    state: pen_qm
+  - type: Item
+    sprite: Objects/Tools/appraisal-tool.rsi
+  - type: PriceGun
+  - type: UseDelay
+    delay: 3
+  - type: Clothing
+    sprite: Objects/Tools/appraisal-tool.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+  - type: Tag
+    tags:
+    - AppraisalTool
+    - Sidearm
+  - type: GuideHelp
+    guides:
+    - Cargo
+
+- type: entity
+  name: rd's fountain pen
+  parent: PenEmbeddable
+  id: PenRd
+  description: A luxurious fountain pen for the Rd of the station.
+  components:
+  - type: Sprite
+    state: pen_rd
+  - type: Beeper
+    minBeepInterval: 0.5
+    maxBeepInterval: 0.5
+  - type: ProximityDetector
+    range: 40
