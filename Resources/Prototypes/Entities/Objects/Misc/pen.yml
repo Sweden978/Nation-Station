@@ -129,11 +129,37 @@
     state: pen_hos
   - type: MeleeWeapon
     wideAnimationRotation: -45
+    animation: WeaponArcThrust
     damage:
       types:
         Piercing: 10
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
+  - type: EmbeddableProjectile
+    minimumSpeed: 3
+    removalTime: 0.5
+    offset: 0.0,0.0
+  - type: ThrowingAngle
+    angle: 315
+  - type: LandAtCursor
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+            - -0.20,0.10
+            - -0.10,0.20
+            - 0.20,-0.10
+            - 0.10,-0.20
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 8
 
 - type: entity
   name: ce's fountain pen
@@ -160,7 +186,7 @@
   - type: SolutionContainerManager
     solutions:
       hypospray:
-        maxVol: 5
+        maxVol: 10
   - type: RefillableSolution
     solution: hypospray
   - type: ExaminableSolution
@@ -212,8 +238,25 @@
   components:
   - type: Sprite
     state: pen_rd
-  - type: Beeper
-    minBeepInterval: 0.5
-    maxBeepInterval: 0.5
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ItemToggle
+  - type: ProximityBeeper
   - type: ProximityDetector
-    range: 40
+    range: 20
+    criteria:
+      components:
+      - Anomaly
+  - type: Beeper
+    minBeepInterval: 0.15
+    maxBeepInterval: 1.00
+    beepSound:
+      path: "/Audio/Items/locator_beep.ogg"
+      params:
+        maxDistance: 1
+        volume: -8
