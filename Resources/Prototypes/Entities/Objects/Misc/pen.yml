@@ -123,18 +123,84 @@
   name: hos's fountain pen
   parent: PenEmbeddable
   id: PenHos
-  description: A luxurious fountain pen for the hos of the station. Sharpend for defense of the station.
+  description: A luxurious fountain pen for the hos of the station. Has a built in stun module.
   components:
   - type: Sprite
     state: pen_hos
+  - type: ItemToggle
+    predictable: false
+    soundActivate:
+      collection: sparks
+      params:
+        variation: 0.250
+    soundDeactivate:
+      collection: sparks
+      params:
+        variation: 0.250
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+      params:
+        variation: 0.250
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+      types:
+        Piercing: 0
   - type: MeleeWeapon
-    wideAnimationRotation: -45
-    animation: WeaponArcThrust
+    wideAnimationRotation: -135
     damage:
       types:
         Piercing: 10
+    bluntStaminaDamageFactor: 2.0
+    angle: 60
+    animation: WeaponArcThrust
     soundHit:
-      path: /Audio/Weapons/bladeslice.ogg
+      path: /Audio/Weapons/pierce.ogg
+  - type: StaminaDamageOnHit
+    damage: 100
+    sound: /Audio/Weapons/Guns/Hits/taser_hit.ogg
+  - type: StaminaDamageOnCollide
+    damage: 200
+    sound: /Audio/Weapons/Guns/Hits/taser_hit.ogg
+  - type: LandAtCursor # it deals stamina damage when thrown
+  - type: Battery
+    maxCharge: 500
+    startingCharge: 500
+  - type: UseDelay
+  - type: Item
+    heldPrefix: off
+    size: Normal
+  - type: DisarmMalus
+    malus: 0.225
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+     enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: {state: stunbaton_on}
+          False: {state: stunbaton_off}
+  - type: StaticPrice
+    price: 80
+  - type: Riggable
+  - type: SolutionContainerManager
+    solutions:
+      battery:
+        maxVol: 5
+  - type: InjectableSolution
+    solution: battery
+  - type: DrawableSolution
+    solution: battery
+  - type: Explosive
+    explosionType: Default
+    intensitySlope: 1.5
+    maxIntensity: 200
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+      Plastic: 100
+  - type: GuideHelp
+    guides:
+    - Security
+    - Antagonists
   - type: EmbeddableProjectile
     minimumSpeed: 3
     removalTime: 0.5
@@ -159,7 +225,8 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Piercing: 8
+        Piercing: 5
+
 
 - type: entity
   name: ce's fountain pen
