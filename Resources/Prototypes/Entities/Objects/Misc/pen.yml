@@ -127,6 +127,8 @@
   components:
   - type: Sprite
     state: pen_hos
+  - type: Stunbaton
+    energyPerUse: 50
   - type: ItemToggle
     predictable: false
     soundActivate:
@@ -152,19 +154,17 @@
         Piercing: 10
     bluntStaminaDamageFactor: 2.0
     angle: 60
-    animation: WeaponArcThrust
-    soundHit:
-      path: /Audio/Weapons/pierce.ogg
+    animation: WeaponArcSlash
   - type: StaminaDamageOnHit
     damage: 100
-    sound: /Audio/Weapons/Guns/Hits/taser_hit.ogg
+    sound: /Audio/Weapons/egloves.ogg
   - type: StaminaDamageOnCollide
     damage: 200
-    sound: /Audio/Weapons/Guns/Hits/taser_hit.ogg
+    sound: /Audio/Weapons/egloves.ogg
   - type: LandAtCursor # it deals stamina damage when thrown
   - type: Battery
-    maxCharge: 500
-    startingCharge: 500
+    maxCharge: 100
+    startingCharge: 100
   - type: UseDelay
   - type: Item
     heldPrefix: off
@@ -221,10 +221,7 @@
         - ItemMask
         restitution: 0.3
         friction: 0.2
-  - type: DamageOtherOnHit
-    damage:
-      types:
-        Piercing: 5
+  - type: BalloonPopper
 
 
 - type: entity
