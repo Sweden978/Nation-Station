@@ -154,13 +154,13 @@
         Piercing: 10
     bluntStaminaDamageFactor: 2.0
     angle: 60
-    animation: WeaponArcSlash
+    animation: WeaponArcThrust
   - type: StaminaDamageOnHit
-    damage: 100
-    sound: /Audio/Weapons/egloves.ogg
+    damage: 101
+    sound: /Audio/Weapons/Guns/Hits/taser_hit.ogg
   - type: StaminaDamageOnCollide
-    damage: 200
-    sound: /Audio/Weapons/egloves.ogg
+    damage: 101
+    sound: /Audio/Weapons/Guns/Hits/taser_hit.ogg
   - type: LandAtCursor # it deals stamina damage when thrown
   - type: Battery
     maxCharge: 100
